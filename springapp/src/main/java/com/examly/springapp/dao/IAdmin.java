@@ -1,9 +1,7 @@
 package dao;
 
-import org.springframework.data.repository.CrudRepository;
-
+import org.springframework.data.jpa.repository.JpaRepository;
 import model.Admin;
 
-public interface IAdmin extends CrudRepository<Admin,Integer> {
-	public Admin findByAdminNameAndAdminPassword(String username, String userpassword);
+public interface IAdmin extends JpaRepository<Admin,Integer> {
 }
