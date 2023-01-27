@@ -4,17 +4,17 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class Movie {
+public class Booking {
 	@Id
-	private int movieid;
+	private int bookingid;
 	private String moviename;
 
-	public int getMovieid() {
-		return movieid;
+	public int getBookingid() {
+		return bookingid;
 	}
 
-	public void setMovieid(int movieid) {
-		this.movieid = movieid;
+	public void setBookingid(int bookingid) {
+		this.bookingid = bookingid;
 	}
 
 	public String getMoviename() {
@@ -24,4 +24,5 @@ public class Movie {
 	public void setMoviename(String moviename) {
 		this.moviename = moviename;
 	}
+
 }

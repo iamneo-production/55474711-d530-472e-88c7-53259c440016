@@ -8,9 +8,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import dao.IAdmin;
+import dao.IBooking;
 import dao.IMovie;
+import model.Booking;
 import model.Movie;
 
 @RestController
@@ -20,6 +21,8 @@ public class AdminController {
 	IAdmin admin;
 	@Autowired
 	IMovie movie;
+	@Autowired
+	IBooking booking;
 
 	@GetMapping("/admin")
 	public Iterable<Movie> getAllMovie() {
@@ -27,8 +30,9 @@ public class AdminController {
 	}
 
 	@PostMapping("/admin/movie")
-	public String addMovie(@RequestBody Movie movie) {
-		return addMovie(movie);
+	public String addMovie(@RequestBody Movie m) {
+		movie.save(m);
+		return "Movie Added";
 	}
 
 	@DeleteMapping("/admin/movie/{id}")
@@ -38,17 +42,17 @@ public class AdminController {
 	}
 
 	@PutMapping("/admin/movie/{id}")
-	public String updateMovie(@RequestBody Movie m) {
-		movie.findById(m.getMovieid()).map(update -> {
+	public String updateMovie(@RequestBody Movie m ,@PathVariable("id") int id) {
+		movie.findById(id).map(update -> {
 			update.setMovieid(m.getMovieid());
 			update.setMoviename(m.getMoviename());
 			return movie.save(update);
 		});
-		return "Updated Movie";
+		return "Movie Updated";
 	}
 
 	@GetMapping("/admin/allBooking")
-	public Iterable<Movie> getAllOrders() {
-		return movie.findAll();
+	public Iterable<Booking> getAllBooking() {
+		return booking.findAll();
 	}
 }
