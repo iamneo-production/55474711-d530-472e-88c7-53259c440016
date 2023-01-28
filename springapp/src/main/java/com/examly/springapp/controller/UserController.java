@@ -32,7 +32,7 @@ public class UserController {
 
 	@GetMapping("/")
 	public String welcome() {
-		return "Welcome to Spring Data CRUD Repository";
+		return "Welcome to Movie Application";
 	}
 
 	@PostMapping("/login")
